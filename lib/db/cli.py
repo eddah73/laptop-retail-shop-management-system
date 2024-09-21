@@ -1,4 +1,7 @@
+from rich.console import Console
+from rich import print
 
+console = Console()
 from helpers import (
     exit_program,
     list_customers,
@@ -22,7 +25,7 @@ from helpers import (
 
 
 def main():
-    print("-----Welcome to Laptop Shop-----")
+    console.print("-----Welcome to Laptop Shop-----",style="bold blue")
     while True:
         menu()
         choice = input("> ")
@@ -94,7 +97,7 @@ def main():
 
 
 def menu():
-    print("Please select an option:")
+    console.print("Please select an option:",style="green bold")
     print("0.Exit the program")
     print("1.Customer options")
     print("2.Laptop options")
@@ -103,35 +106,35 @@ def menu():
 
 
 def custormer_options():
-    print("Please select an option:")
+    console.print("Please select an option:",style="green bold")
     print("0.Exit the program")
     print("1.List all customers")
-    print("2:Create customer")
+    print("2.Create customer")
     print("3.Find customer by name")
     print("4.Find customer by id")
-    print("5:Update customer")
-    print("6:Delete customer")
+    print("5.Update customer")
+    print("6.Delete customer")
    
 
 
 def laptop_options():
-    print("Please select an option:")
+    console.print("Please select an option:",style="green bold")
     print("0.Exit the program")
     print("1.List all laptops")
-    print("2:Create laptop")
+    print("2.Create laptop")
     print("3.Find laptop by name")
     print("4.Find laptop by id")
-    print("5:Update laptop")
-    print("6:Delete laptop")
+    print("5.Update laptop")
+    print("6.Delete laptop")
     
 
 def order_options():
-    print("Please select an option:")
+    console.print("Please select an option:",style="green bold")
     print("0.Exit the program")
-    print("1:List all orders")
-    print("2:Create order")
-    print("3:Update order")
-    print("4:Cancel order")
-    print("5:List all orders made by customer")
+    print("1.List all orders")
+    print("2.Create order")
+    print("3.Update order")
+    print("4.Cancel order")
+    print("5.List all orders made by customer")
 if __name__ == "__main__":
     main()

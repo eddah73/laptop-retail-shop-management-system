@@ -1,4 +1,5 @@
 from models import Customer,Order,Laptop,session
+from rich  import print
 
 
 def exit_program():
@@ -130,7 +131,7 @@ def create_laptop():
         print("Laptop specification field is empty.")
         return
 
-    # Check if the laptop already exists
+    
     existing_laptop = session.query(Laptop).filter_by(name=name, specification=specification, price=price).first()
     
     if existing_laptop:
@@ -195,15 +196,14 @@ def list_orders():
 def create_order():
     """Create an order for an existing customer and laptop."""
     
-    # Get customer name and check if exists
+   
     customer_name = input("Customer name: ")
     customer = session.query(Customer).filter_by(name=customer_name).first()
     
     if not customer:
         print("Customer not found.")
         return
-    
-    # Get laptop name and check if exists
+  
     laptop_name = input("Laptop name: ")
     laptop = session.query(Laptop).filter_by(name=laptop_name).first()
     
@@ -211,14 +211,13 @@ def create_order():
         print("Laptop not found.")
         return
     
-    # Get quantity and calculate total price
     quantity = int(input("Quantity: "))
     if quantity > laptop.stock:  
         print(f"Not enough stock available.")
         return
     total_price = laptop.price * quantity
 
-    # Create the order with status 'ordered'
+    
     order = Order(customer=customer, laptop=laptop, quantity=quantity, total_price=total_price, status='order on process')
     session.add(order)
     session.commit()
@@ -234,13 +233,13 @@ def update_order():
         print("Order not found.")
         return
 
-    # Update quantity
+    
     new_quantity = input("Enter new quantity (leave blank): ")
     if new_quantity:
         order.quantity = int(new_quantity)
         order.total_price = order.laptop.price * order.quantity 
 
-    # Update status
+    
     new_status = input("Enter new status (leave ): ")
     if new_status:
         if order.status.lower() == "order on process" and new_status.lower() == "completed":
